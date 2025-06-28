@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Spiritual Arts Institute</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+.navbar {
+  background-color: #2e7d32; /* dark green */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar a {
+  color: white;
+  padding: 16px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar a:hover,
+.dropdown:hover .dropbtn {
+  background-color: #27662a; /* slightly darker green on hover */
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 180px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+	.hero {
+		height: 300px;
+		background: url('Images/SPG1.jpg') no-repeat center center;
+		background-size: cover;
+	}
+
+	/* New welcome text styling */
+	.welcome-text {
+		text-align: center;
+		padding: 40px 20px;
+		background-color: #f9f9f9;
+	}
+
+	.welcome-text h1 {
+		margin-top: 0;
+		font-size: 2em;
+		color: #333;
+	}
+
+	.welcome-text p {
+		font-size: 1.2em;
+		color: #555;
+	}
+
+    .hero h1 {
+      margin-top: 0;
+    }
+
+    .section-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 30px;
+      background: #ffffff;
+    }
+
+    .section-links a {
+      margin: 10px;
+      padding: 20px 30px;
+      background: #28a9dd;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .section-links a:hover {
+      background: #1f8dbd;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <img src="logo.png" alt="Logo" class="logo">
+    <a href="index.html">HOME</a>
+    <div class="dropdown">
+      <a class="dropbtn">PROGRAMS</a>
+      <div class="dropdown-content">
+        <a href="spiritual-guides.html">Spiritual Guides</a>
+        <a href="prayer-plans.html">Prayer Plans</a>
+        <a href="specific-prayers.html">Specific Prayers</a>
+      </div>
+    </div>
+    <a href="events.html">EVENTS</a>
+    <a href="blog.html">BLOG</a>
+    <a href="about.html">ABOUT US</a>
+    <a href="contact.html">CONTACT</a>
+  </div>
+
+
+	<!-- Hero Image Section -->
+	<div class="hero"></div>
+
+	<!-- Welcome Text Section -->
+	<div class="welcome-text">
+		<h1>Welcome to Zed's Spiritual Growth Hub</h1>
+		<p>Helping Souls Grow – Explore our spiritual guides, prayer plans, and inspirational resources to support your journey.</p>
+	</div>
+
+  <div class="section-links">
+    <a href="spiritual-guides.html">Explore Spiritual Guides</a>
+    <a href="prayer-plans.html">View Prayer Plans</a>
+    <a href="specific-prayers.html">Find Specific Prayers</a>
+    <a href="blog.html">Read Articles & Insights</a>
+    <a href="about.html">Learn About Us</a>
+    <a href="contact.html">Get in Touch</a>
+  </div>
+
+</body>
+</html>

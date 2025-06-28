@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Spiritual Guides</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            color: #334155;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .guide-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            cursor: pointer;
+            border-left: 5px solid #3b82f6; /* A nice blue accent */
+        }
+        .guide-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+        }
+        .guide-card-icon {
+            color: #3b82f6;
+        }
+    </style>
+</head>
+<body class="selection:bg-blue-200">
+    <!-- Header Section -->
+    <header class="bg-gradient-to-r from-blue-700 to-blue-900 text-white p-6 shadow-lg">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+            <h1 class="text-4xl font-extrabold mb-2 md:mb-0">
+                <i class="fas fa-book-open mr-3"></i>Spiritual Guides
+            </h1>
+            <p class="text-lg opacity-90 text-center md:text-left">Journey through wisdom and growth.</p>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="container mx-auto px-4 py-8 flex-grow">
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Select Your Guide</h2>
+            <div id="guides-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Guide cards will be dynamically loaded here -->
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="bg-gray-100 p-8 rounded-xl shadow-inner border border-gray-200">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4 flex items-center">
+                <i class="fas fa-info-circle mr-3 text-blue-600"></i>About These Guides
+            </h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                These spiritual guides are designed to help you deepen your faith, overcome challenges, and foster personal growth. Each guide offers practical insights, scriptural wisdom, and actionable steps to support your spiritual journey.
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+                We believe that consistent engagement with spiritual resources can transform lives. Explore the guides, reflect on their teachings, and apply them to your daily life for a richer, more purposeful existence.
+            </p>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white p-6 text-center shadow-inner mt-8">
+        <div class="container mx-auto text-sm">
+            <p>&copy; 2025 Spiritual Journey. All rights reserved.</p>
+            <p class="mt-2">Built with dedication and purpose.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Array of guide objects
+        const spiritualGuides = [
+            {
+                id: '7-day-plan',
+                title: '7-Day Spiritual Battle Plan',
+                description: 'A focused guide to address bitterness and sexual sin, and rebuild with Christ.',
+                icon: 'fas fa-shield-alt', // Font Awesome icon class
+                contentUrl: '7 Day Plan.html' // The URL to the attached HTML file
+            },
+            {
+                id: 'daily-devotion',
+                title: 'Daily Devotionals for Growth',
+                description: 'Find inspiration and guidance for your everyday spiritual walk.',
+                icon: 'fas fa-pray',
+                contentUrl: 'daily-devotion.html' // Placeholder, you would create this file
+            },
+            {
+                id: 'forgiveness-path',
+                title: 'The Path to Forgiveness',
+                description: 'A step-by-step journey towards releasing burdens and embracing freedom through forgiveness.',
+                icon: 'fas fa-hand-holding-heart',
+                contentUrl: 'forgiveness-path.html' // Placeholder
+            },
+            {
+                id: 'purpose-discovery',
+                title: 'Discovering Your Divine Purpose',
+                description: 'Explore your unique calling and align your life with God\'s plan.',
+                icon: 'fas fa-compass',
+                contentUrl: 'purpose-discovery.html' // Placeholder
+            }
+            // Add more guides as needed
+        ];
+
+        // Function to create a guide card HTML element
+        function createGuideCard(guide) {
+            const card = document.createElement('div');
+            card.className = 'guide-card p-6 rounded-xl flex flex-col items-center text-center';
+            card.innerHTML = `
+                <i class="${guide.icon} guide-card-icon text-5xl mb-4"></i>
+                <h3 class="text-2xl font-semibold text-gray-900 mb-2">${guide.title}</h3>
+                <p class="text-gray-600 mb-4">${guide.description}</p>
+                <button data-id="${guide.id}" class="open-guide-btn bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105 shadow-md hover:shadow-lg">
+                    View Guide <i class="fas fa-external-link-alt ml-2"></i>
+                </button>
+            `;
+            // Add event listener to the button to open the guide in a new window
+            card.querySelector('.open-guide-btn').addEventListener('click', () => {
+                window.open(guide.contentUrl, '_blank');
+            });
+            return card;
+        }
+
+        // Function to render all guide cards
+        function renderGuides() {
+            const container = document.getElementById('guides-container');
+            spiritualGuides.forEach(guide => {
+                container.appendChild(createGuideCard(guide));
+            });
+        }
+
+        // Render guides when the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', renderGuides);
+    </script>
+</body>
+</html>
