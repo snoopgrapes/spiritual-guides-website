@@ -3,87 +3,111 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Spiritual Arts Institute</title>
+  <title>Zeds Spiritual Hub</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Quicksand&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Quicksand', sans-serif;
+      background-color: #f0f8ff;
     }
 
-.navbar {
-  background-color: #2e7d32; /* dark green */
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  padding: 0 20px;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
+    .navbar {
+      background-color: #2e7d32;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-.navbar a {
-  color: white;
-  padding: 16px;
-  text-decoration: none;
-  font-weight: bold;
-}
+    .navbar img.logo {
+      height: 50px;
+      margin-right: 20px;
+    }
 
-.navbar a:hover,
-.dropdown:hover .dropbtn {
-  background-color: #27662a; /* slightly darker green on hover */
-}
+    .navbar a {
+      color: white;
+      padding: 16px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 180px;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-}
+    .navbar a:hover,
+    .dropdown:hover .dropbtn {
+      background-color: #27662a;
+    }
 
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 180px;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
 
-.dropdown-content a:hover {
-  background-color: #f1f1f1;
-}
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
 
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
 
     .dropdown:hover .dropdown-content {
       display: block;
     }
 
-	.hero {
-		height: 300px;
-		background: url('Images/SPG1.jpg') no-repeat center center;
-		background-size: cover;
-	}
+    .hero {
+      position: relative;
+      height: 300px;
+      background: url('Images/SPG1.jpg') no-repeat center center;
+      background-size: cover;
+    }
 
-	/* New welcome text styling */
-	.welcome-text {
-		text-align: center;
-		padding: 40px 20px;
-		background-color: #f9f9f9;
-	}
-
-	.welcome-text h1 {
-		margin-top: 0;
-		font-size: 2em;
-		color: #333;
-	}
-
-	.welcome-text p {
-		font-size: 1.2em;
-		color: #555;
-	}
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(to bottom right, rgba(0,0,0,0.5), rgba(0,0,0,0.3));
+    }
 
     .hero h1 {
+      position: relative;
+      color: white;
+      text-align: center;
+      font-size: 2.8em;
+      padding: 100px 20px 0;
+      font-family: 'Playfair Display', serif;
+      z-index: 1;
+    }
+
+    .welcome-text {
+      text-align: center;
+      padding: 40px 20px;
+      background-color: #fff;
+    }
+
+    .welcome-text h1 {
+      font-size: 2.2em;
+      color: #333;
       margin-top: 0;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .welcome-text p {
+      font-size: 1.2em;
+      color: #555;
     }
 
     .section-links {
@@ -91,61 +115,76 @@
       justify-content: center;
       flex-wrap: wrap;
       padding: 30px;
-      background: #ffffff;
+      background: #fafafa;
     }
 
     .section-links a {
       margin: 10px;
-      padding: 20px 30px;
-      background: #28a9dd;
+      padding: 16px 24px;
+      background: #ff7f50;
       color: white;
       text-decoration: none;
-      border-radius: 8px;
+      border-radius: 10px;
       font-weight: bold;
-      transition: background 0.3s ease;
+      font-size: 1.1em;
+      transition: transform 0.3s ease, background 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      animation: fadeInUp 0.6s ease both;
     }
 
     .section-links a:hover {
-      background: #1f8dbd;
+      background: #ff6347;
+      transform: scale(1.05);
+    }
+
+    .section-links a i {
+      margin-right: 8px;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .logo-container {
+      text-align: center;
+      padding: 20px;
+    }
+    
+    .logo-container img {
+      max-width: 250px; 
+      height: auto;
     }
   </style>
 </head>
 <body>
 
-  <div class="navbar">
-    <img src="logo.png" alt="Logo" class="logo">
-    <a href="index.html">HOME</a>
-    <div class="dropdown">
-      <a class="dropbtn">PROGRAMS</a>
-      <div class="dropdown-content">
-        <a href="spiritual-guides.html">Spiritual Guides</a>
-        <a href="prayer-plans.html">Prayer Plans</a>
-        <a href="specific-prayers.html">Specific Prayers</a>
-      </div>
-    </div>
-    <a href="events.html">EVENTS</a>
-    <a href="blog.html">BLOG</a>
-    <a href="about.html">ABOUT US</a>
-    <a href="contact.html">CONTACT</a>
+  <div class="logo-container">
+    <img src="Images/logo.png" alt="Zed's Spiritual Growth Hub Logo">
   </div>
 
+  <div class="hero">
+    <h1>Welcome to Zed's Spiritual Growth Hub</h1>
+  </div>
 
-	<!-- Hero Image Section -->
-	<div class="hero"></div>
-
-	<!-- Welcome Text Section -->
-	<div class="welcome-text">
-		<h1>Welcome to Zed's Spiritual Growth Hub</h1>
-		<p>Helping Souls Grow – Explore our spiritual guides, prayer plans, and inspirational resources to support your journey.</p>
-	</div>
+  <div class="welcome-text">
+    <h1>Helping Souls Grow</h1>
+    <p>Explore our spiritual guides, prayer plans, and inspirational resources to support your journey.</p>
+  </div>
 
   <div class="section-links">
-    <a href="spiritual-guides.html">Explore Spiritual Guides</a>
-    <a href="prayer-plans.html">View Prayer Plans</a>
-    <a href="specific-prayers.html">Find Specific Prayers</a>
-    <a href="blog.html">Read Articles & Insights</a>
-    <a href="about.html">Learn About Us</a>
-    <a href="contact.html">Get in Touch</a>
+    <a href="spiritual-guides.html"><i class="fas fa-hands"></i> Explore Spiritual Guides</a>
+    <a href="prayer-plans.html"><i class="fas fa-pray"></i> View Prayer Plans</a>
+    <a href="specific-prayers.html"><i class="fas fa-dove"></i> Find Specific Prayers</a>
+    <a href="blog.html"><i class="fas fa-feather-alt"></i> Read Articles & Insights</a>
+    <a href="about.html"><i class="fas fa-users"></i> Learn About Us</a>
+    <a href="contact.html"><i class="fas fa-envelope"></i> Get in Touch</a>
   </div>
 
 </body>
