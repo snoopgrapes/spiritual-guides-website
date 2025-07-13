@@ -2,7 +2,7 @@
   "name": "Zed's Spiritual Hub",
   "short_name": "Spiritual Hub",
   "start_url": "/index.html",
-  "display": "standalone",
+  "display": "browser",
   "background_color": "#f0f8ff",
   "theme_color": "#2e7d32",
   "description": "Spiritual guides and prayer resources",

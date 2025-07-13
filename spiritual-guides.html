@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Spiritual Guides</title>
-	
-	<link rel="manifest" href="manifest.json">
-	<meta name="theme-color" content="#3b82f6"> <!-- Blue matches header -->
+    
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#3b82f6"> <!-- Blue matches header -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -18,11 +18,11 @@
             flex-direction: column;
             min-height: 100vh;
         }
-		
-		body {
-			font-display: swap; /* Prioritize text visibility over font loading */
-			}
-		
+        
+        body {
+            font-display: swap; /* Prioritize text visibility over font loading */
+        }
+        
         .guide-card {
             background-color: #ffffff;
             border-radius: 0.75rem; /* rounded-xl */
@@ -62,6 +62,14 @@
     <main class="container mx-auto px-4 py-8 flex-grow">
         <section class="mb-12">
             <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Select Your Guide</h2>
+            
+            <!-- Example Link Added Here -->
+            <div class="text-center mb-8">
+                <a href="spiritual-guides.html" target="_blank" rel="noopener noreferrer" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105 shadow-md hover:shadow-lg">
+                    <i class="fas fa-hands mr-2"></i> Explore Spiritual Guides
+                </a>
+            </div>
+            
             <div id="guides-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Guide cards will be dynamically loaded here -->
             </div>
@@ -137,14 +145,10 @@
                 <i class="${guide.icon} guide-card-icon text-5xl mb-4"></i>
                 <h3 class="text-2xl font-semibold text-gray-900 mb-2">${guide.title}</h3>
                 <p class="text-gray-600 mb-4">${guide.description}</p>
-                <button data-id="${guide.id}" class="open-guide-btn bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105 shadow-md hover:shadow-lg">
+                <a href="${guide.contentUrl}" target="_blank" rel="noopener noreferrer" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105 shadow-md hover:shadow-lg">
                     View Guide <i class="fas fa-external-link-alt ml-2"></i>
-                </button>
+                </a>
             `;
-            // Add event listener to the button to open the guide in a new window
-            card.querySelector('.open-guide-btn').addEventListener('click', () => {
-                window.open(guide.contentUrl, '_blank');
-            });
             return card;
         }
 
