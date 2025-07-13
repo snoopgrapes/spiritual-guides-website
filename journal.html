@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Online Journal</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts - Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      /* Ensure full height for centering */
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f2f5; /* Light gray background */
+    }
+    /* Custom scrollbar for entries div */
+    .entries-container::-webkit-scrollbar {
+      width: 8px;
+    }
+    .entries-container::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+    .entries-container::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 10px;
+    }
+    .entries-container::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+  </style>
+</head>
+<body class="p-4">
+  <div id="app-container" class="bg-white p-6 md:p-8 rounded-xl shadow-lg w-full max-w-md mx-auto flex flex-col items-center">
+    <!-- Loading Indicator -->
+    <div id="loading-spinner" class="hidden flex flex-col items-center justify-center py-8">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
+      <p class="mt-4 text-gray-600">Loading journal...</p>
+    </div>
+
+    <!-- Message Box -->
+    <div id="message-box" class="hidden fixed top-4 right-4 bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md z-50">
+      This is a message.
+    </div>
+
+    <!-- Authentication Section -->
+    <div id="auth-section" class="w-full text-center space-y-4">
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">Welcome to Your Journal</h2>
+      <p class="text-gray-600 mb-6">Sign in to start writing your thoughts.</p>
+      <button id="google-login-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg shadow-md transition duration-300 ease-in-out flex items-center justify-center space-x-2">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.307-7.439-7.387s3.344-7.387 7.439-7.387c2.323 0 3.865.965 4.795 1.896l3.29-3.29C19.251 2.5 16.204 0 12.24 0 5.463 0 0 5.334 0 12c0 6.666 5.463 12 12.24 12 6.821 0 11.567-4.973 11.567-11.756 0-.788-.085-1.39-.189-1.986H12.24z"/>
+        </svg>
+        <span>Sign in with Google</span>
+      </button>
+      <button id="anonymous-login-btn" class="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 px-4 rounded-lg shadow-md transition duration-300 ease-in-out">
+        Continue Anonymously
+      </button>
+      <p class="text-sm text-gray-500 mt-4">Anonymous entries are stored locally on this device.</p>
+    </div>
+
+    <!-- Journal Section (hidden by default) -->
+    <div id="journal-section" class="hidden w-full">
+      <div class="flex justify-between items-center mb-4">
+        <h1 class="text-3xl font-extrabold text-gray-900">My Journal</h1>
+        <button id="sign-out-btn" class="bg-red-500 hover:bg-red-600 text-white text-sm font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out">
+          Sign Out
+        </button>
+      </div>
+      <p id="user-id-display" class="text-sm text-gray-600 mb-4 text-center break-all"></p>
+
+      <textarea
+        id="journal-entry-textarea"
+        class="w-full h-32 p-4 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-y"
+        placeholder="Write your thoughts here..."
+      ></textarea>
+      <button
+        id="save-entry-btn"
+        class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-4 rounded-lg shadow-md transition duration-300 ease-in-out"
+      >
+        Save Entry
+      </button>
+
+      <div id="entries-container" class="mt-6 space-y-4 max-h-96 overflow-y-auto pr-2">
+        <!-- Journal entries will be loaded here -->
+        <p id="no-entries-message" class="text-gray-500 text-center italic hidden">No entries yet. Start writing!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInAnonymously, signInWithCustomToken, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, doc, getDoc, addDoc, setDoc, updateDoc, deleteDoc, onSnapshot, collection, query, where, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    // Global variables provided by the Canvas environment
+	const appId = 'zedsonlinejournal';
+	const firebaseConfig = {
+    apiKey: "AIzaSyDCYgcA2gwY2SuG-OakUbc_B9PJa9TcvHI",
+    authDomain: "zedsonlinejournal.firebaseapp.com",
+    projectId: "zedsonlinejournal",
+    storageBucket: "zedsonlinejournal.firebasestorage.app",
+    messagingSenderId: "406154101112",
+    appId: "1:406154101112:web:f40092f4c6a4658e96088d",
+    measurementId: "G-62QTC1EVJY"
+};
+// Extract appId directly from your firebaseConfig
+    const appId = firebaseConfig.appId.split(':')[1]; // This extracts the numeric part from your appId
+                                                     // e.g., "1:406154101112:web:..." -> "406154101112"
+    const initialAuthToken = null; // This is not used when running directly in browser
+
+    let app, auth, db;
+    let currentUserId = null;
+    let unsubscribeFromEntries = null;
+    // DOM Elements
+    const loadingSpinner = document.getElementById('loading-spinner');
+    const authSection = document.getElementById('auth-section');
+    const journalSection = document.getElementById('journal-section');
+    const googleLoginBtn = document.getElementById('google-login-btn');
+    const anonymousLoginBtn = document.getElementById('anonymous-login-btn');
+    const signOutBtn = document.getElementById('sign-out-btn');
+    const journalEntryTextarea = document.getElementById('journal-entry-textarea');
+    const saveEntryBtn = document.getElementById('save-entry-btn');
+    const entriesContainer = document.getElementById('entries-container');
+    const userIdDisplay = document.getElementById('user-id-display');
+    const noEntriesMessage = document.getElementById('no-entries-message');
+    const messageBox = document.getElementById('message-box');
+
+    // --- Utility Functions ---
+
+    /**
+     * Displays a temporary message box.
+     * @param {string} message The message to display.
+     * @param {'success'|'error'|'info'} type The type of message (influences color).
+     */
+    function showMessage(message, type = 'info') {
+      messageBox.textContent = message;
+      messageBox.className = 'fixed top-4 right-4 px-4 py-2 rounded-lg shadow-md z-50'; // Reset classes
+      if (type === 'success') {
+        messageBox.classList.add('bg-green-500', 'text-white');
+      } else if (type === 'error') {
+        messageBox.classList.add('bg-red-500', 'text-white');
+      } else { // info
+        messageBox.classList.add('bg-blue-500', 'text-white');
+      }
+      messageBox.classList.remove('hidden');
+      setTimeout(() => {
+        messageBox.classList.add('hidden');
+      }, 3000); // Hide after 3 seconds
+    }
+
+    /**
+     * Toggles the loading spinner visibility.
+     * @param {boolean} isLoading
+     */
+    function showLoading(isLoading) {
+      if (isLoading) {
+        loadingSpinner.classList.remove('hidden');
+        authSection.classList.add('hidden');
+        journalSection.classList.add('hidden');
+      } else {
+        loadingSpinner.classList.add('hidden');
+      }
+    }
+
+    /**
+     * Updates the UI based on the authentication state.
+     * @param {object|null} user The Firebase User object or null if signed out.
+     */
+    function updateUIForAuth(user) {
+      showLoading(false); // Hide loading once auth state is determined
+      if (user) {
+        currentUserId = user.uid;
+        authSection.classList.add('hidden');
+        journalSection.classList.remove('hidden');
+        userIdDisplay.textContent = `User ID: ${currentUserId}`;
+        setupRealtimeListener(); // Start listening for entries
+        showMessage(`Welcome, ${user.isAnonymous ? 'Anonymous User' : user.displayName || user.email || 'User'}!`, 'success');
+      } else {
+        currentUserId = null;
+        authSection.classList.remove('hidden');
+        journalSection.classList.add('hidden');
+        entriesContainer.innerHTML = ''; // Clear entries when logged out
+        userIdDisplay.textContent = '';
+        if (unsubscribeFromEntries) {
+          unsubscribeFromEntries(); // Stop listening if user logs out
+          unsubscribeFromEntries = null;
+        }
+      }
+    }
+
+    /**
+     * Renders journal entries to the UI.
+     * @param {Array<object>} entries An array of journal entry objects.
+     */
+    function renderEntries(entries) {
+      if (entries.length === 0) {
+        noEntriesMessage.classList.remove('hidden');
+        entriesContainer.innerHTML = ''; // Clear any existing entries
+        return;
+      } else {
+        noEntriesMessage.classList.add('hidden');
+      }
+
+      entriesContainer.innerHTML = entries.map(entry => `
+        <div class="bg-gray-100 p-4 rounded-lg shadow-sm border border-gray-200">
+          <p class="text-gray-800 text-base mb-2">${entry.text}</p>
+          <small class="text-gray-500 text-xs">${new Date(entry.date).toLocaleString()}</small>
+        </div>
+      `).join('');
+    }
+
+    // --- Authentication Functions ---
+
+    async function signInAnonymouslyUser() {
+      showLoading(true);
+      try {
+        await signInAnonymously(auth);
+        showMessage('Signed in anonymously!', 'success');
+      } catch (error) {
+        console.error("Error signing in anonymously:", error);
+        showMessage(`Error signing in anonymously: ${error.message}`, 'error');
+        showLoading(false); // Hide loading on error
+      }
+    }
+
+    async function signInWithGoogle() {
+      showLoading(true);
+      try {
+        const provider = new GoogleAuthProvider();
+        await signInWithPopup(auth, provider);
+        showMessage('Signed in with Google!', 'success');
+      } catch (error) {
+        console.error("Error signing in with Google:", error);
+        showMessage(`Error signing in with Google: ${error.message}`, 'error');
+        showLoading(false); // Hide loading on error
+      }
+    }
+
+    async function signOutUser() {
+      showLoading(true);
+      try {
+        await signOut(auth);
+        showMessage('Signed out successfully!', 'info');
+      } catch (error) {
+        console.error("Error signing out:", error);
+        showMessage(`Error signing out: ${error.message}`, 'error');
+      } finally {
+        showLoading(false); // Always hide loading after sign out attempt
+      }
+    }
+
+    // --- Firestore Functions ---
+
+    async function saveEntry() {
+      const text = journalEntryTextarea.value.trim();
+      if (!text) {
+        showMessage('Journal entry cannot be empty!', 'error');
+        return;
+      }
+      if (!currentUserId) {
+        showMessage('You must be signed in to save entries.', 'error');
+        return;
+      }
+
+      try {
+        // Firestore path for private user data: /artifacts/{appId}/users/{userId}/journalEntries
+        const entriesCollectionRef = collection(db, `artifacts/${appId}/users/${currentUserId}/journalEntries`);
+        await addDoc(entriesCollectionRef, {
+          text: text,
+          date: new Date().toISOString(), // Store date as ISO string for consistent sorting/parsing
+          userId: currentUserId, // Redundant but good for clarity/querying
+        });
+        journalEntryTextarea.value = ''; // Clear textarea
+        showMessage('Entry saved successfully!', 'success');
+      } catch (error) {
+        console.error("Error saving entry:", error);
+        showMessage(`Error saving entry: ${error.message}`, 'error');
+      }
+    }
+
+    /**
+     * Sets up a real-time listener for the current user's journal entries.
+     */
+    function setupRealtimeListener() {
+      if (!currentUserId) {
+        console.warn("Cannot set up listener: No user ID available.");
+        return;
+      }
+
+      // If a previous listener exists, unsubscribe from it first
+      if (unsubscribeFromEntries) {
+        unsubscribeFromEntries();
+      }
+
+      const entriesCollectionRef = collection(db, `artifacts/${appId}/users/${currentUserId}/journalEntries`);
+      const q = query(entriesCollectionRef); // No orderBy to avoid index issues, sort in memory
+
+      unsubscribeFromEntries = onSnapshot(q, (snapshot) => {
+        const entries = [];
+        snapshot.forEach(doc => {
+          entries.push({ id: doc.id, ...doc.data() });
+        });
+        // Sort entries by date in descending order (newest first)
+        entries.sort((a, b) => new Date(b.date) - new Date(a.date));
+        renderEntries(entries);
+      }, (error) => {
+        console.error("Error fetching entries:", error);
+        showMessage(`Error loading entries: ${error.message}`, 'error');
+      });
+    }
+
+    // --- Initialization ---
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      showLoading(true);
+
+      // Initialize Firebase app
+      if (Object.keys(firebaseConfig).length === 0) {
+        console.error("Firebase config is missing. Please ensure __firebase_config is provided.");
+        showMessage("Firebase configuration missing. Cannot initialize app.", 'error');
+        showLoading(false);
+        return;
+      }
+
+      try {
+        app = initializeApp(firebaseConfig);
+        auth = getAuth(app);
+        db = getFirestore(app);
+
+        // Sign in with custom token if provided (Canvas environment)
+        if (initialAuthToken) {
+          await signInWithCustomToken(auth, initialAuthToken);
+        } else {
+          // If no custom token, listen for auth state changes
+          // The onAuthStateChanged listener will handle initial anonymous sign-in or existing sessions
+        }
+
+        // Set up authentication state listener
+        onAuthStateChanged(auth, (user) => {
+          updateUIForAuth(user);
+        });
+
+      } catch (error) {
+        console.error("Error initializing Firebase:", error);
+        showMessage(`Error initializing Firebase: ${error.message}`, 'error');
+        showLoading(false);
+      }
+    });
+
+    // --- Event Listeners ---
+    googleLoginBtn.addEventListener('click', signInWithGoogle);
+    anonymousLoginBtn.addEventListener('click', signInAnonymouslyUser);
+    signOutBtn.addEventListener('click', signOutUser);
+    saveEntryBtn.addEventListener('click', saveEntry);
+
+  </script>
+</body>
+</html>
