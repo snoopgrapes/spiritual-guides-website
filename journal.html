@@ -11,14 +11,12 @@
   <style>
     body {
       font-family: 'Inter', sans-serif;
-      /* Ensure full height for centering */
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: #f0f2f5; /* Light gray background */
+      background-color: #f0f2f5;
     }
-    /* Custom scrollbar for entries div */
     .entries-container::-webkit-scrollbar {
       width: 8px;
     }
@@ -33,7 +31,6 @@
     .entries-container::-webkit-scrollbar-thumb:hover {
       background: #555;
     }
-    /* Edit/Delete button styles */
     .edit-btn, .delete-btn {
       transition: all 0.2s ease;
     }
@@ -42,6 +39,13 @@
     }
     .delete-btn:hover {
       transform: scale(1.1);
+    }
+    .name-change-btn {
+      transition: all 0.2s ease;
+      font-size: 0.75rem;
+    }
+    .name-change-btn:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -74,7 +78,7 @@
       <p class="text-sm text-gray-500 mt-4">Anonymous entries are stored locally on this device.</p>
     </div>
 
-    <!-- Journal Section (hidden by default) -->
+    <!-- Journal Section -->
     <div id="journal-section" class="hidden w-full">
       <div class="flex justify-between items-center mb-4">
         <h1 class="text-3xl font-extrabold text-gray-900">My Journal</h1>
@@ -82,7 +86,11 @@
           Sign Out
         </button>
       </div>
-      <p id="user-id-display" class="text-sm text-gray-600 mb-4 text-center break-all"></p>
+      
+      <div class="flex flex-col items-center mb-4">
+        <h2 id="user-id-display" class="text-xl font-semibold text-gray-800 text-center"></h2>
+        <button id="name-change-btn" class="name-change-btn text-blue-600 mt-1 hidden">Change Name</button>
+      </div>
 
       <textarea
         id="journal-entry-textarea"
@@ -97,7 +105,6 @@
       </button>
 
       <div id="entries-container" class="mt-6 space-y-4 max-h-96 overflow-y-auto pr-2">
-        <!-- Journal entries will be loaded here -->
         <p id="no-entries-message" class="text-gray-500 text-center italic hidden">No entries yet. Start writing!</p>
       </div>
     </div>
@@ -106,8 +113,25 @@
   <!-- Firebase SDKs -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-    import { getAuth, signInAnonymously, signInWithCustomToken, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-    import { getFirestore, doc, getDoc, addDoc, setDoc, updateDoc, deleteDoc, onSnapshot, collection, query, where, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    import { 
+      getAuth, 
+      signInAnonymously, 
+      GoogleAuthProvider, 
+      signInWithPopup, 
+      signOut, 
+      onAuthStateChanged,
+      updateProfile
+    } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { 
+      getFirestore, 
+      doc, 
+      addDoc, 
+      updateDoc, 
+      deleteDoc, 
+      onSnapshot, 
+      collection, 
+      query
+    } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyDCYgcA2gwY2SuG-OakUbc_B9PJa9TcvHI",
@@ -140,6 +164,7 @@
     const userIdDisplay = document.getElementById('user-id-display');
     const noEntriesMessage = document.getElementById('no-entries-message');
     const messageBox = document.getElementById('message-box');
+    const nameChangeBtn = document.getElementById('name-change-btn');
 
     // --- Utility Functions ---
 
@@ -169,21 +194,43 @@
       }
     }
 
+    async function updateUserName(newName) {
+      try {
+        await updateProfile(auth.currentUser, {
+          displayName: newName
+        });
+        updateUIForAuth(auth.currentUser);
+        showMessage('Name updated successfully!', 'success');
+      } catch (error) {
+        console.error("Error updating name:", error);
+        showMessage(`Error updating name: ${error.message}`, 'error');
+      }
+    }
+
     function updateUIForAuth(user) {
       showLoading(false);
       if (user) {
         currentUserId = user.uid;
         authSection.classList.add('hidden');
         journalSection.classList.remove('hidden');
-        userIdDisplay.textContent = `User ID: ${currentUserId}`;
+        
+        // Display user's name or email username
+        const userName = user.displayName || 
+                        (user.email ? user.email.split('@')[0] : 'Guest User');
+        userIdDisplay.textContent = `Welcome, ${userName}!`;
+        
+        // Show name change button for anonymous users
+        nameChangeBtn.classList.toggle('hidden', !user.isAnonymous);
+        
         setupRealtimeListener();
-        showMessage(`Welcome, ${user.isAnonymous ? 'Anonymous User' : user.displayName || user.email || 'User'}!`, 'success');
+        showMessage(`Welcome, ${userName}!`, 'success');
       } else {
         currentUserId = null;
         authSection.classList.remove('hidden');
         journalSection.classList.add('hidden');
         entriesContainer.innerHTML = '';
         userIdDisplay.textContent = '';
+        nameChangeBtn.classList.add('hidden');
         if (unsubscribeFromEntries) {
           unsubscribeFromEntries();
           unsubscribeFromEntries = null;
@@ -270,7 +317,6 @@
 
       try {
         if (currentlyEditingId) {
-          // Update existing entry
           const entryRef = doc(db, `artifacts/${appId}/users/${currentUserId}/journalEntries`, currentlyEditingId);
           await updateDoc(entryRef, {
             text: text,
@@ -278,7 +324,6 @@
           });
           showMessage('Entry updated successfully!', 'success');
         } else {
-          // Create new entry
           const entriesCollectionRef = collection(db, `artifacts/${appId}/users/${currentUserId}/journalEntries`);
           await addDoc(entriesCollectionRef, {
             text: text,
@@ -288,7 +333,6 @@
           showMessage('Entry saved successfully!', 'success');
         }
         
-        // Reset form
         journalEntryTextarea.value = '';
         currentlyEditingId = null;
         saveEntryBtn.textContent = 'Save Entry';
@@ -299,39 +343,17 @@
       }
     }
 
-    function setupRealtimeListener() {
-      if (!currentUserId) {
-        console.warn("Cannot set up listener: No user ID available.");
-        return;
-      }
-
-      if (unsubscribeFromEntries) {
-        unsubscribeFromEntries();
-      }
-
-      const entriesCollectionRef = collection(db, `artifacts/${appId}/users/${currentUserId}/journalEntries`);
-      const q = query(entriesCollectionRef);
-
-      unsubscribeFromEntries = onSnapshot(q, (snapshot) => {
-        const entries = [];
-        snapshot.forEach(doc => {
-          entries.push({ id: doc.id, ...doc.data() });
-        });
-        entries.sort((a, b) => new Date(b.date) - new Date(a.date));
-        renderEntries(entries);
-      }, (error) => {
-        console.error("Error fetching entries:", error);
-        showMessage(`Error loading entries: ${error.message}`, 'error');
-      });
-    }
-
     // --- Authentication Functions ---
 
     async function signInAnonymouslyUser() {
       showLoading(true);
       try {
-        await signInAnonymously(auth);
-        showMessage('Signed in anonymously!', 'success');
+        const userName = prompt("Enter your name (or leave blank for 'Guest User'):") || 'Guest User';
+        const result = await signInAnonymously(auth);
+        await updateProfile(result.user, {
+          displayName: userName
+        });
+        showMessage(`Welcome, ${userName}!`, 'success');
       } catch (error) {
         console.error("Error signing in anonymously:", error);
         showMessage(`Error signing in anonymously: ${error.message}`, 'error');
@@ -343,7 +365,15 @@
       showLoading(true);
       try {
         const provider = new GoogleAuthProvider();
-        await signInWithPopup(auth, provider);
+        provider.addScope('profile');
+        provider.addScope('email');
+        
+        const result = await signInWithPopup(auth, provider);
+        if (!result.user.displayName) {
+          await updateProfile(result.user, {
+            displayName: result.user.email.split('@')[0]
+          });
+        }
         showMessage('Signed in with Google!', 'success');
       } catch (error) {
         console.error("Error signing in with Google:", error);
@@ -365,17 +395,35 @@
       }
     }
 
+    async function handleNameChange() {
+      const newName = prompt("Enter your new name:", auth.currentUser.displayName || '');
+      if (newName && newName !== auth.currentUser.displayName) {
+        await updateUserName(newName);
+      }
+    }
+
+    function setupRealtimeListener() {
+      if (!currentUserId) return;
+      if (unsubscribeFromEntries) unsubscribeFromEntries();
+
+      const entriesCollectionRef = collection(db, `artifacts/${appId}/users/${currentUserId}/journalEntries`);
+      const q = query(entriesCollectionRef);
+
+      unsubscribeFromEntries = onSnapshot(q, (snapshot) => {
+        const entries = [];
+        snapshot.forEach(doc => entries.push({ id: doc.id, ...doc.data() }));
+        entries.sort((a, b) => new Date(b.date) - new Date(a.date));
+        renderEntries(entries);
+      }, (error) => {
+        console.error("Error fetching entries:", error);
+        showMessage(`Error loading entries: ${error.message}`, 'error');
+      });
+    }
+
     // --- Initialization ---
 
     document.addEventListener('DOMContentLoaded', async () => {
       showLoading(true);
-
-      if (Object.keys(firebaseConfig).length === 0) {
-        console.error("Firebase config is missing.");
-        showMessage("Firebase configuration missing. Cannot initialize app.", 'error');
-        showLoading(false);
-        return;
-      }
 
       try {
         app = initializeApp(firebaseConfig);
@@ -402,6 +450,7 @@
     anonymousLoginBtn.addEventListener('click', signInAnonymouslyUser);
     signOutBtn.addEventListener('click', signOutUser);
     saveEntryBtn.addEventListener('click', saveEntry);
+    nameChangeBtn.addEventListener('click', handleNameChange);
 
   </script>
 </body>
