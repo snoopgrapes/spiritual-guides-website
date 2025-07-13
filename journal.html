@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Online Journal</title>
   <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Replace the current Tailwind CDN with this optimized version -->
+	<script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>	
   <!-- Google Fonts - Inter -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -100,7 +101,6 @@
     import { getFirestore, doc, getDoc, addDoc, setDoc, updateDoc, deleteDoc, onSnapshot, collection, query, where, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
     // Global variables provided by the Canvas environment
-	const appId = 'zedsonlinejournal';
 	const firebaseConfig = {
     apiKey: "AIzaSyDCYgcA2gwY2SuG-OakUbc_B9PJa9TcvHI",
     authDomain: "zedsonlinejournal.firebaseapp.com",
