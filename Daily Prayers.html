@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Prayers</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .prayer-card {
+            display: none; /* Hidden by default */
+        }
+        .prayer-card.active {
+            display: block; /* Shown when active */
+        }
+        /* Custom styles for button hover effects */
+        .btn-primary {
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .btn-primary:hover {
+            background-color: #4f46e5; /* Darker indigo on hover */
+            transform: translateY(-2px);
+        }
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="selection:bg-indigo-200 selection:text-indigo-800">
+    <div class="w-full max-w-2xl bg-white shadow-xl rounded-xl p-6 md:p-8 border border-gray-200">
+        <h1 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-6">Daily Prayers</h1>
+
+        <!-- Prayer Display Area -->
+        <div id="prayer-container" class="relative min-h-[350px] md:min-h-[400px]">
+            <!-- Day 1 -->
+            <div id="day-1" class="prayer-card active">
+                <h2 class="text-2xl font-semibold text-indigo-700 mb-3">Day 1: Blessing of Love and Unity</h2>
+                <p class="text-gray-600 mb-4 italic">Scripture: "Above all, love each other deeply, because love covers over a multitude of sins." (1 Peter 4:8)</p>
+                <p class="text-gray-700 leading-relaxed">
+                    "Father, today I pray Your love over my wife. Fill her heart with Your unconditional love so she overflows with patience, kindness, and grace toward our family. Remove any resentment or division, and knit our hearts together in unity. Help us to forgive quickly and love sacrificially, just as Christ loves us. Amen."
+                </p>
+            </div>
+
+            <!-- Day 2 -->
+            <div id="day-2" class="prayer-card">
+                <h2 class="text-2xl font-semibold text-indigo-700 mb-3">Day 2: Blessing of Peace and Rest</h2>
+                <p class="text-gray-600 mb-4 italic">Scripture: "The Lord gives strength to His people; the Lord blesses His people with peace." (Psalm 29:11)</p>
+                <p class="text-gray-700 leading-relaxed">
+                    "Lord, I declare Your peace over my wife’s mind, body, and spirit. Calm every anxious thought (Philippians 4:6–7) and grant her rest from stress or weariness. Guard our home as a place of refuge, where Your presence brings stillness. Renew her strength like the eagles’ (Isaiah 40:31). Amen."
+                </p>
+            </div>
+
+            <!-- Day 3 -->
+            <div id="day-3" class="prayer-card">
+                <h2 class="text-2xl font-semibold text-indigo-700 mb-3">Day 3: Blessing of Wisdom and Discernment</h2>
+                <p class="text-gray-600 mb-4 italic">Scripture: "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault." (James 1:5)</p>
+                <p class="text-gray-700 leading-relaxed">
+                    "God, grant my wife heavenly wisdom in every decision—as a mother, partner, and woman of God. Give her discernment to navigate challenges and clarity to hear Your voice. Let her words and actions reflect Your truth (Proverbs 31:26). Bless our family with a spirit of understanding. Amen."
+                </p>
+            </div>
+
+            <!-- Day 4 -->
+            <div id="day-4" class="prayer-card">
+                <h2 class="text-2xl font-semibold text-indigo-700 mb-3">Day 4: Blessing of Health and Strength</h2>
+                <p class="text-gray-600 mb-4 italic">Scripture: "Beloved, I pray that you may prosper in all things and be in health, just as your soul prospers." (3 John 1:2)</p>
+                <p class="text-gray-700 leading-relaxed">
+                    "Jehovah Rapha, I pray for my wife’s physical and emotional health. Strengthen her body, renew her energy, and protect her from sickness (Psalm 103:2–3). Heal any hidden wounds and let her ‘run and not grow weary’ (Isaiah 40:31). Bless our family with vitality to serve You joyfully. Amen."
+                </p>
+            </div>
+
+            <!-- Day 5 -->
+            <div id="day-5" class="prayer-card">
+                <h2 class="text-2xl font-semibold text-indigo-700 mb-3">Day 5: Blessing of Protection</h2>
+                <p class="text-gray-600 mb-4 italic">Scripture: "The Lord will keep you from all harm—He will watch over your life." (Psalm 121:7)</p>
+                <p class="text-gray-700 leading-relaxed">
+                    "Heavenly Father, surround my wife and family with Your angels (Psalm 91:11). Guard us from accidents, evil influences, and spiritual attacks. Be our shield and fortress (Proverbs 18:10). Let no weapon formed against us prosper (Isaiah 54:17). Cover us with the blood of Jesus. Amen."
+                </p>
+            </div>
+
+            <!-- Day 6 -->
+            <div id="day-6" class="prayer-card">
+                <h2 class="text-2xl font-semibold text-indigo-700 mb-3">Day 6: Blessing of Joy and Purpose</h2>
+                <p class="text-gray-600 mb-4 italic">Scripture: "You make known to me the path of life; in Your presence there is fullness of joy." (Psalm 16:11)</p>
+                <p class="text-gray-700 leading-relaxed">
+                    "Lord, fill my wife with Your joy that overflows! Remove any heaviness and remind her of her worth in Christ. Align her passions with Your purpose (Jeremiah 29:11). Let our home be filled with laughter, gratitude, and hope. May we radiate Your light to others. Amen."
+                </p>
+            </div>
+
+            <!-- Day 7 -->
+            <div id="day-7" class="prayer-card">
+                <h2 class="text-2xl font-semibold text-indigo-700 mb-3">Day 7: Blessing of Spiritual Growth</h2>
+                <p class="text-gray-600 mb-4 italic">Scripture: "But grow in the grace and knowledge of our Lord and Savior Jesus Christ." (2 Peter 3:18)</p>
+                <p class="text-gray-700 leading-relaxed">
+                    "Holy Spirit, deepen my wife’s relationship with You. Ignite her hunger for Scripture and prayer (Joshua 1:8). Let her faith be unshakable, and may our family grow together in Christ. Use us to bless others and glorify Your name. Thank You for Your faithfulness! Amen."
+                </p>
+            </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="flex justify-between mt-8 space-x-4">
+            <button id="prev-btn" class="flex-1 px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-75 btn-primary">
+                Previous Day
+            </button>
+            <button id="next-btn" class="flex-1 px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-75 btn-primary">
+                Next Day
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const prayerCards = document.querySelectorAll('.prayer-card');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        let currentDay = 0; // Start with Day 1 (index 0)
+
+        // Function to show the current day's prayer
+        function showPrayer(dayIndex) {
+            prayerCards.forEach((card, index) => {
+                if (index === dayIndex) {
+                    card.classList.add('active');
+                } else {
+                    card.classList.remove('active');
+                }
+            });
+        }
+
+        // Event listener for Previous button
+        prevBtn.addEventListener('click', () => {
+            currentDay = (currentDay - 1 + prayerCards.length) % prayerCards.length;
+            showPrayer(currentDay);
+        });
+
+        // Event listener for Next button
+        nextBtn.addEventListener('click', () => {
+            currentDay = (currentDay + 1) % prayerCards.length;
+            showPrayer(currentDay);
+        });
+
+        // Initialize by showing the first prayer
+        document.addEventListener('DOMContentLoaded', () => {
+            showPrayer(currentDay);
+        });
+    </script>
+</body>
+</html>
