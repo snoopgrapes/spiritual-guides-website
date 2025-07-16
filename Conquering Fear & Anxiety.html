@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bible Study: Conquering Fear & Anxiety</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&family=Open+Sans&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6C4AB6;
+            --secondary: #8D72E1;
+            --light: #B9E0FF;
+            --accent: #FF8B13;
+            --dark: #2D2727;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        h1:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            color: var(--secondary);
+            animation: slideIn 0.8s ease-out;
+        }
+        
+        .theme {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--secondary);
+            margin-bottom: 2rem;
+            animation: fadeIn 1.5s ease-in;
+        }
+        
+        .scripture {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            padding: 1.5rem;
+            border-left: 5px solid var(--primary);
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .scripture:hover {
+            transform: translateY(-5px);
+        }
+        
+        .scripture:before {
+            content: """;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 3rem;
+            color: rgba(108, 74, 182, 0.1);
+            font-family: serif;
+        }
+        
+        .scripture-ref {
+            display: block;
+            text-align: right;
+            font-weight: bold;
+            color: var(--primary);
+            margin-top: 1rem;
+            font-style: normal;
+        }
+        
+        .discussion {
+            background-color: rgba(185, 224, 255, 0.3);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border: 1px dashed var(--secondary);
+        }
+        
+        .discussion h3 {
+            margin-top: 0;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark);
+        }
+        
+        .discussion ol {
+            padding-left: 1.5rem;
+        }
+        
+        .insight {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-top: 3px solid var(--accent);
+            position: relative;
+        }
+        
+        .insight:before {
+            content: "💡";
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: white;
+            padding: 0 10px;
+            font-size: 1.5rem;
+        }
+        
+        .application {
+            background: linear-gradient(135deg, var(--light) 0%, var(--secondary) 100%);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .application:before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+        
+        .application:after {
+            content: "";
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            width: 100px;
+            height: 100px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+        
+        .application h3 {
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .application ol {
+            position: relative;
+            z-index: 1;
+            padding-left: 1.5rem;
+        }
+        
+        .prayer {
+            font-style: italic;
+            text-align: center;
+            padding: 2rem;
+            margin: 2rem 0;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
+        .prayer:before, .prayer:after {
+            content: """;
+            font-size: 4rem;
+            color: rgba(108, 74, 182, 0.1);
+            position: absolute;
+        }
+        
+        .prayer:before {
+            top: 0;
+            left: 20px;
+        }
+        
+        .prayer:after {
+            bottom: -20px;
+            right: 20px;
+        }
+        
+        .final-thought {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+            border-radius: 8px;
+            border-left: 5px solid var(--accent);
+            animation: pulse 2s infinite;
+        }
+        
+        hr {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--secondary), transparent);
+            margin: 2rem 0;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(-20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Conquering Fear & Anxiety</h1>
+        <div class="theme">God has not given us a spirit of fear</div>
+        
+        <hr>
+        
+        <h2>Opening Reflection</h2>
+        <p>Fear and anxiety are common struggles, but God's Word reminds us that these emotions do not come from Him. Instead, He offers us power, love, and a sound mind. In moments of worry, we can choose to exchange our fears for His supernatural peace.</p>
+        
+        <hr>
+        
+        <h2>Key Scripture #1: 2 Timothy 1:7</h2>
+        <div class="scripture">
+            "For God has not given us a spirit of fear, but of power and of love and of a sound mind."
+            <span class="scripture-ref">2 Timothy 1:7 (NKJV)</span>
+        </div>
+        
+        <div class="discussion">
+            <h3>Discussion Questions:</h3>
+            <ol>
+                <li>What does this verse say is the <em>source</em> of fear? (Hint: It's not from God.)</li>
+                <li>What three things has God given us instead? How do these counteract fear?</li>
+                <li>How can remembering this truth change the way we respond to anxiety?</li>
+            </ol>
+        </div>
+        
+        <div class="insight">
+            <h3>Insight:</h3>
+            <p>Fear paralyzes, but God's Spirit empowers us to act in love and wisdom. When anxiety rises, we can declare: <em>"This fear is not from God—He has given me strength, love, and clarity!"</em></p>
+        </div>
+        
+        <hr>
+        
+        <h2>Key Scripture #2: Philippians 4:6-7</h2>
+        <div class="scripture">
+            "Be anxious for nothing, but in everything by prayer and supplication, with thanksgiving, let your requests be made known to God; and the peace of God, which surpasses all understanding, will guard your hearts and minds through Christ Jesus."
+            <span class="scripture-ref">Philippians 4:6-7 (NKJV)</span>
+        </div>
+        
+        <div class="discussion">
+            <h3>Discussion Questions:</h3>
+            <ol>
+                <li>What does Paul instruct us to do instead of worrying?</li>
+                <li>How does thankfulness shift our focus in prayer?</li>
+                <li>What does God promise in return when we bring Him our concerns?</li>
+            </ol>
+        </div>
+        
+        <div class="insight">
+            <h3>Insight:</h3>
+            <p>Prayer is the antidote to anxiety. When we surrender our fears to God with gratitude, He replaces them with a peace that defies logic—a peace that <em>guards</em> our hearts and minds.</p>
+        </div>
+        
+        <hr>
+        
+        <h2>Practical Application: The Fear Exchange</h2>
+        <div class="application">
+            <h3>When anxiety strikes today:</h3>
+            <ol>
+                <li><strong>Write down</strong> the specific worry.</li>
+                <li><strong>Pray:</strong> <em>"Lord, I exchange this fear for Your peace."</em></li>
+                <li><strong>Release it</strong> to God and meditate on Philippians 4:7.</li>
+            </ol>
+            
+            <h3 style="margin-top: 1.5rem;">Journal Prompt:</h3>
+            <p>What fear do you need to surrender today? Write a prayer of trust, thanking God for His peace.</p>
+        </div>
+        
+        <hr>
+        
+        <h2>Closing Prayer</h2>
+        <div class="prayer">
+            "Father, thank You that fear does not rule us—Your Spirit does. When worries arise, help us to bring them to You and receive Your peace that guards our hearts. Remind us that we walk in power, love, and clarity because of You. In Jesus' name, Amen."
+        </div>
+        
+        <div class="final-thought">
+            Fear shouts; God's peace whispers. Which voice will you listen to today?
+        </div>
+    </div>
+</body>
+</html>
