@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prayer for Peace</title>
+    <style>
+        :root {
+            --primary: #4a6fa5;
+            --secondary: #e8f1f8;
+            --text: #333333;
+            --light-text: #666666;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Roboto, -apple-system, sans-serif;
+            line-height: 1.8;
+            color: var(--text);
+            background-color: #fafafa;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .prayer-card {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .prayer-header {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--secondary);
+            color: var(--primary);
+            font-weight: bold;
+            padding: 8px 15px;
+            border-bottom-left-radius: 12px;
+            font-size: 14px;
+        }
+        
+        h1 {
+            color: var(--primary);
+            margin-top: 0;
+            font-weight: 600;
+            font-size: 28px;
+        }
+        
+        .theme {
+            font-size: 18px;
+            color: var(--primary);
+            font-weight: 500;
+            margin: 25px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        .prayer-content {
+            margin: 30px 0;
+            font-size: 17px;
+            line-height: 1.9;
+        }
+        
+        .scripture-ref {
+            color: var(--primary);
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: underline;
+            text-decoration-color: var(--secondary);
+            text-underline-offset: 3px;
+            position: relative;
+        }
+        
+        .scripture-ref:hover::after {
+            content: attr(data-verse);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 300px;
+            font-size: 15px;
+            font-weight: normal;
+            text-align: center;
+            line-height: 1.6;
+            z-index: 10;
+            margin-bottom: 10px;
+            text-decoration: none;
+        }
+        
+        .prayer-closing {
+            font-style: italic;
+            text-align: right;
+            margin-top: 30px;
+            color: var(--light-text);
+        }
+        
+        .verse {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 15px;
+            color: var(--light-text);
+            font-style: italic;
+        }
+        
+        @media (max-width: 600px) {
+            .prayer-card {
+                padding: 25px;
+            }
+            
+            .scripture-ref:hover::after {
+                width: 200px;
+                left: 0;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="prayer-card">
+        <div class="prayer-header">Prayer</div>
+        
+        <h1>For Peace That Surpasses Understanding</h1>
+        
+        <div class="theme">Theme: Peace comes from fixing our minds on Christ</div>
+        
+        <div class="prayer-content">
+            <p>Heavenly Father,</p>
+            
+            <p>In the midst of life's storms and uncertainties, I come before You seeking the peace that only You can give - that supernatural peace promised in <span class="scripture-ref" data-verse="You will keep in perfect peace those whose minds are steadfast, because they trust in you.">Isaiah 26:3</span>. When my heart is troubled and my mind races with anxious thoughts, help me to fix my eyes steadfastly on Christ.</p>
+            
+            <p>Lord Jesus, You told us, <em>"Peace I leave with you; my peace I give you"</em>. I receive Your gift today. Teach me to let Your peace rule in my heart as <span class="scripture-ref" data-verse="Let the peace of Christ rule in your hearts, since as members of one body you were called to peace. And be thankful.">Colossians 3:15</span> instructs. May Your peace be the arbitrator of every decision, the filter for every thought, and the foundation of every emotion.</p>
+            
+            <p>When circumstances threaten to overwhelm me, remind me that true peace isn't found in the absence of trouble, but in the presence of You, the Prince of Peace. Help me to surrender my need for control and understanding, trusting that You are sovereign over all things.</p>
+            
+            <p>Fill me with Your Spirit so completely that Your peace becomes my natural state - a peace so profound it confounds worldly wisdom, a peace that guards my heart and mind as I remain in You.</p>
+        </div>
+        
+        <div class="prayer-closing">
+            <p>In the mighty name of Jesus, Amen.</p>
+        </div>
+        
+        <div class="verse">
+            <p>"And the peace of God, which transcends all understanding, will guard your hearts and your minds in Christ Jesus." (Philippians 4:7)</p>
+        </div>
+    </div>
+
+    <script>
+        // Add verses to the references
+        document.querySelectorAll('.scripture-ref').forEach(ref => {
+            if(ref.textContent === 'Isaiah 26:3') {
+                ref.setAttribute('data-verse', '«You will keep in perfect peace those whose minds are steadfast, because they trust in you.» (Isaiah 26:3)');
+            }
+            else if(ref.textContent === 'Colossians 3:15') {
+                ref.setAttribute('data-verse', '«Let the peace of Christ rule in your hearts, since as members of one body you were called to peace. And be thankful.» (Colossians 3:15)');
+            }
+        });
+    </script>
+</body>
+</html>

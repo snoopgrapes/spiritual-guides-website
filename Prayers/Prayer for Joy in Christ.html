@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prayer for Joy in Christ</title>
+    <style>
+        :root {
+            --primary: #6C4AB6;
+            --secondary: #8D72E1;
+            --light: #B9E0FF;
+            --accent: #FFCACA;
+            --text: #2D3748;
+            --gray: #718096;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: #f8f9fa;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .prayer-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .prayer-header {
+            color: var(--primary);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        
+        .scripture-ref {
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .scripture-ref:hover::after {
+            content: attr(data-verse);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            width: 280px;
+            font-weight: normal;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            z-index: 10;
+            margin-bottom: 0.5rem;
+        }
+        
+        .prayer-body {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .prayer-body p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .prayer-closing {
+            font-weight: 600;
+            color: var(--primary);
+            text-align: right;
+            margin-top: 2rem;
+        }
+        
+        .verse-footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: var(--gray);
+            font-style: italic;
+        }
+        
+        .highlight {
+            background-color: rgba(185, 224, 255, 0.3);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="prayer-card">
+        <h1 class="prayer-header">Prayer for Abiding Joy</h1>
+        
+        <div class="prayer-body">
+            <p>Heavenly Father,</p>
+            
+            <p>As I come before You today, I'm reminded through <span class="scripture-ref" data-verse="'I have told you this so that my joy may be in you and that your joy may be complete.' (John 15:11, NIV)">John 15:11</span> that true joy flows from abiding in Christ. Forgive me for the times I've sought happiness in temporary things rather than in Your presence.</p>
+            
+            <p>Lord, teach me what it truly means to <span class="highlight">remain in You</span> as the branch remains in the vine. When life's circumstances threaten to steal my joy, remind me that Your joy is my strength <span class="scripture-ref" data-verse="'Nehemiah said, 'The joy of the LORD is your strength.'' (Nehemiah 8:10, NIV)">(Nehemiah 8:10)</span>.</p>
+            
+            <p>Fill me with Your Spirit so completely that Your joy overflows in my life. Help me to:</p>
+            
+            <ul>
+                <li>Find joy in our relationship, not just in favorable circumstances</li>
+                <li>Share Your joy with others through encouragement and kindness</li>
+                <li>Recognize joy-stealers and surrender them to You</li>
+                <li>Abide in Your Word where true joy is found</li>
+            </ul>
+            
+            <p>May my life reflect the supernatural joy that only comes from walking closely with You. Even when I walk through difficult valleys, let Your joy sustain me and testify to Your faithfulness.</p>
+        </div>
+        
+        <p class="prayer-closing">In Jesus' precious name, Amen.</p>
+        
+        <div class="verse-footer">
+            "You make known to me the path of life; in your presence there is fullness of joy; at your right hand are pleasures forevermore." <br>
+            <span class="scripture-ref" data-verse="'You make known to me the path of life; in your presence there is fullness of joy; at your right hand are pleasures forevermore.' (Psalm 16:11, ESV)">Psalm 16:11</span>
+        </div>
+    </div>
+
+    <script>
+        // Add slight animation to scripture popups
+        document.querySelectorAll('.scripture-ref').forEach(ref => {
+            ref.addEventListener('mouseover', function() {
+                this.style.transition = 'all 0.2s ease';
+                this.style.color = '#4B2C8C';
+            });
+            ref.addEventListener('mouseout', function() {
+                this.style.color = '';
+            });
+        });
+    </script>
+</body>
+</html>

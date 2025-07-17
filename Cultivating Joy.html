@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 6: Cultivating Joy</title>
+    <style>
+        :root {
+            --primary: #6C4AB6;
+            --secondary: #8D72E1;
+            --light: #B9E0FF;
+            --accent: #FFCACA;
+            --text: #2D3748;
+            --gray: #718096;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: #f8f9fa;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .devotion-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .day-number {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-bottom-left-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        h1 {
+            color: var(--primary);
+            margin-top: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+        
+        .theme {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--secondary);
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--light);
+        }
+        
+        .scripture-ref {
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .scripture-ref:hover::after {
+            content: attr(data-verse);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            width: 300px;
+            font-weight: normal;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            z-index: 10;
+            margin-bottom: 0.5rem;
+        }
+        
+        .content {
+            margin: 2rem 0;
+        }
+        
+        .content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .reflection {
+            background-color: var(--light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        
+        .reflection h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+        
+        .prayer {
+            font-style: italic;
+            border-left: 3px solid var(--secondary);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            color: var(--gray);
+        }
+        
+        .application {
+            margin-top: 2rem;
+        }
+        
+        .application h3 {
+            color: var(--primary);
+        }
+        
+        .application ul {
+            padding-left: 1.5rem;
+        }
+        
+        .application li {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="devotion-card">
+        <div class="day-number">Day 6</div>
+        
+        <h1>Cultivating Joy</h1>
+        
+        <div class="theme">Theme: Joy comes from abiding in Christ</div>
+        
+        <div class="scripture-ref" data-verse="'I have told you this so that my joy may be in you and that your joy may be complete.' (John 15:11, NIV)">John 15:11</div>, 
+        <div class="scripture-ref" data-verse="'Nehemiah said, "Go and enjoy choice food and sweet drinks, and send some to those who have nothing prepared. This day is holy to our Lord. Do not grieve, for the joy of the LORD is your strength."' (Nehemiah 8:10, NIV)">Nehemiah 8:10</div>
+        
+        <div class="content">
+            <p>True joy isn't dependent on circumstances but flows from our connection to Christ. In John 15, Jesus compares Himself to a vine and us to branches - our vitality, fruitfulness, and joy come from remaining in Him.</p>
+            
+            <p>The world offers temporary happiness based on external factors, but Christ offers a deeper, abiding joy that persists even in difficult seasons. This joy isn't something we manufacture; it's the natural result of abiding in His presence.</p>
+        </div>
+        
+        <div class="reflection">
+            <h3>Reflection</h3>
+            <p>Nehemiah 8:10 reveals that the joy of the Lord is our strength. When Ezra read God's Word to the people, they initially wept as they recognized how far they'd strayed. But Nehemiah redirected them to celebration - not because their circumstances were perfect, but because they were reconnected to their God.</p>
+            
+            <p>Consider: What tends to rob you of joy? How might abiding more deeply in Christ restore that joy?</p>
+        </div>
+        
+        <div class="prayer">
+            <p>Lord Jesus, thank You for offering us Your complete joy. Forgive me for seeking happiness in temporary things rather than in You. Teach me what it truly means to abide in You. When circumstances threaten my joy, remind me that my strength comes from Your joy within me. May my life reflect the supernatural joy that only comes from walking closely with You. Amen.</p>
+        </div>
+        
+        <div class="application">
+            <h3>Application</h3>
+            <ul>
+                <li>Memorize John 15:11 this week and meditate on its meaning</li>
+                <li>Identify one area where you've sought happiness apart from Christ</li>
+                <li>Share Christ's joy with someone today through encouragement</li>
+                <li>When feeling joyless, pause to ask: "Am I abiding in Christ right now?"</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Add slight animation to scripture popups
+        document.querySelectorAll('.scripture-ref').forEach(ref => {
+            ref.addEventListener('mouseover', function() {
+                this.style.transition = 'all 0.2s ease';
+                this.style.color = '#4B2C8C';
+            });
+            ref.addEventListener('mouseout', function() {
+                this.style.color = '';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 7: Peace That Surpasses Understanding</title>
+    <style>
+        :root {
+            --primary: #4a6fa5;
+            --secondary: #e8f1f8;
+            --text: #333333;
+            --light-text: #666666;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Roboto, -apple-system, sans-serif;
+            line-height: 1.8;
+            color: var(--text);
+            background-color: #fafafa;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .devotion-card {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .day-number {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--secondary);
+            color: var(--primary);
+            font-weight: bold;
+            padding: 8px 15px;
+            border-bottom-left-radius: 12px;
+            font-size: 14px;
+        }
+        
+        h1 {
+            color: var(--primary);
+            margin-top: 0;
+            font-weight: 600;
+            font-size: 28px;
+        }
+        
+        .theme {
+            font-size: 18px;
+            color: var(--primary);
+            font-weight: 500;
+            margin: 25px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        .content {
+            margin: 30px 0;
+        }
+        
+        .content p {
+            margin-bottom: 20px;
+        }
+        
+        .scripture-ref {
+            color: var(--primary);
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: underline;
+            text-decoration-color: var(--secondary);
+            text-underline-offset: 3px;
+            position: relative;
+        }
+        
+        .scripture-ref:hover::after {
+            content: attr(data-verse);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 300px;
+            font-size: 15px;
+            font-weight: normal;
+            text-align: center;
+            line-height: 1.6;
+            z-index: 10;
+            margin-bottom: 10px;
+            text-decoration: none;
+        }
+        
+        .reflection {
+            background: var(--secondary);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        
+        .reflection h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+        
+        .prayer {
+            font-style: italic;
+            border-left: 3px solid var(--primary);
+            padding-left: 20px;
+            color: var(--light-text);
+        }
+        
+        @media (max-width: 600px) {
+            .devotion-card {
+                padding: 25px;
+            }
+            
+            .scripture-ref:hover::after {
+                width: 200px;
+                left: 0;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="devotion-card">
+        <div class="day-number">Day 7</div>
+        
+        <h1>Peace That Surpasses Understanding</h1>
+        
+        <div class="theme">Theme: Peace comes from fixing our minds on Christ</div>
+        
+        <div class="content">
+            <p>In a world filled with chaos and uncertainty, God offers us a peace that defies human logic. This supernatural peace isn't dependent on circumstances but flows from a mind steadfastly focused on Jesus Christ.</p>
+            
+            <p>As <span class="scripture-ref" data-verse="You will keep in perfect peace those whose minds are steadfast, because they trust in you.">Isaiah 26:3</span> promises, perfect peace comes when we fix our thoughts on God and trust in Him completely. This doesn't mean we ignore life's challenges, but we view them through the lens of Christ's sovereignty and love.</p>
+            
+            <p>The New Testament echoes this truth in <span class="scripture-ref" data-verse="Let the peace of Christ rule in your hearts, since as members of one body you were called to peace. And be thankful.">Colossians 3:15</span>, where Paul instructs believers to let Christ's peace "rule" in their hearts. The Greek word for "rule" here means to arbitrate or govern - suggesting Christ's peace should be the deciding factor in all matters of our hearts.</p>
+        </div>
+        
+        <div class="reflection">
+            <h3>Reflection Questions</h3>
+            <ol>
+                <li>What current situations are challenging your peace?</li>
+                <li>How can you intentionally fix your mind on Christ today?</li>
+                <li>What would it look like to let Christ's peace rule in your heart decisions?</li>
+            </ol>
+        </div>
+        
+        <div class="prayer">
+            <p>Lord Jesus, thank you for offering peace that the world cannot give. When my heart is troubled, help me to fix my eyes on you. Teach me to surrender every anxious thought and to let your peace rule in my heart. May my mind be so steadfast in you that your perfect peace becomes my natural state. Amen.</p>
+        </div>
+    </div>
+
+    <script>
+        // Add verses to the references
+        document.querySelectorAll('.scripture-ref').forEach(ref => {
+            if(ref.textContent === 'Isaiah 26:3') {
+                ref.setAttribute('data-verse', '«You will keep in perfect peace those whose minds are steadfast, because they trust in you.» (Isaiah 26:3)');
+            }
+            else if(ref.textContent === 'Colossians 3:15') {
+                ref.setAttribute('data-verse', '«Let the peace of Christ rule in your hearts, since as members of one body you were called to peace. And be thankful.» (Colossians 3:15)');
+            }
+        });
+    </script>
+</body>
+</html>

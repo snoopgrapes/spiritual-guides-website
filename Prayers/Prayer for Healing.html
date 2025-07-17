@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prayer for Healing from Hurt</title>
+    <style>
+        :root {
+            --primary: #6a5acd;
+            --secondary: #f8f9fa;
+            --text: #333;
+            --light-text: #6c757d;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.8;
+            color: var(--text);
+            background-color: #f5f5f5;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .prayer-card {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            color: var(--primary);
+            margin-top: 0;
+            font-weight: 700;
+            font-size: 28px;
+            text-align: center;
+        }
+        
+        .theme {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary);
+            margin: 25px 0 15px;
+            text-align: center;
+            font-style: italic;
+        }
+        
+        .scripture-ref {
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: underline;
+            text-decoration-style: dotted;
+            position: relative;
+        }
+        
+        .scripture-ref:hover::after {
+            content: attr(data-verse);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 300px;
+            font-weight: normal;
+            font-size: 15px;
+            line-height: 1.6;
+            z-index: 10;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        
+        .prayer-content {
+            font-size: 18px;
+            margin: 30px 0;
+        }
+        
+        .prayer-content p {
+            margin-bottom: 20px;
+        }
+        
+        .signature {
+            text-align: right;
+            font-weight: 600;
+            color: var(--primary);
+            margin-top: 30px;
+        }
+        
+        .verse {
+            text-align: center;
+            margin-top: 40px;
+            font-style: italic;
+            color: var(--light-text);
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="prayer-card">
+        <h1>Prayer for Healing</h1>
+        <div class="theme">Christ understands our pain</div>
+        
+        <div class="prayer-content">
+            <p>Lord Jesus,</p>
+            
+            <p>I come before You with a heart that's hurting. You know the pain I carry - the wounds that others don't see, the grief I try to hide, the disappointments that weigh me down. Your Word says You <span class="scripture-ref" data-verse="'He heals the brokenhearted and binds up their wounds.' (Psalm 147:3)">heal the brokenhearted</span>, and today I ask for Your healing touch.</p>
+            
+            <p>Thank You that You're not a distant God, but a Savior who understands my pain. You experienced betrayal, rejection, and sorrow during Your time on earth. When I feel alone in my suffering, remind me that You <span class="scripture-ref" data-verse="'For we do not have a high priest who is unable to empathize with our weaknesses, but we have one who has been tempted in every way, just as we are—yet he did not sin.' (Hebrews 4:15)">fully understand</span> what I'm going through.</p>
+            
+            <p>Help me to <span class="scripture-ref" data-verse="'Cast all your anxiety on him because he cares for you.' (1 Peter 5:7)">cast all my anxiety</span> on You, trusting that You care for me. Give me the courage to release my hurt into Your hands, believing that You can bring beauty from these ashes.</p>
+            
+            <p>Where I struggle to forgive those who've hurt me, give me Your grace. Where I'm tempted to dwell in bitterness, pour out Your love. Where I feel broken beyond repair, show me Your power to restore.</p>
+            
+            <p>May Your healing work in my heart make me more compassionate toward others who hurt. Let my own experience of Your comfort enable me to comfort those in any trouble with the comfort I myself have received from You.</p>
+            
+            <p class="signature">In Your precious name, Amen.</p>
+        </div>
+        
+        <div class="verse">
+            <p>"The Lord is close to the brokenhearted and saves those who are crushed in spirit." (Psalm 34:18)</p>
+        </div>
+    </div>
+
+    <script>
+        // Optional: Add smooth behavior for scripture popups
+        document.querySelectorAll('.scripture-ref').forEach(ref => {
+            ref.addEventListener('mouseenter', function() {
+                this.style.transition = 'all 0.2s ease';
+                this.style.color = '#4b0082';
+            });
+            ref.addEventListener('mouseleave', function() {
+                this.style.color = '';
+            });
+        });
+    </script>
+</body>
+</html>

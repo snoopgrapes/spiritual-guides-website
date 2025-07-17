@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 5: Healing from Hurt</title>
+    <style>
+        :root {
+            --primary: #6a5acd;
+            --secondary: #f8f9fa;
+            --text: #333;
+            --light-text: #6c757d;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.8;
+            color: var(--text);
+            background-color: #f5f5f5;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .devotion-card {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .day-number {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--primary);
+            color: white;
+            padding: 8px 20px;
+            border-bottom-left-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        h1 {
+            color: var(--primary);
+            margin-top: 0;
+            font-weight: 700;
+            font-size: 28px;
+        }
+        
+        .theme {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary);
+            margin: 25px 0 15px;
+            border-left: 4px solid var(--primary);
+            padding-left: 15px;
+        }
+        
+        .content {
+            margin-bottom: 30px;
+        }
+        
+        .scripture-ref {
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: underline;
+            text-decoration-style: dotted;
+            position: relative;
+        }
+        
+        .scripture-ref:hover::after {
+            content: attr(data-verse);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 300px;
+            font-weight: normal;
+            font-size: 15px;
+            line-height: 1.6;
+            z-index: 10;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        
+        .prayer {
+            background: var(--secondary);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            font-style: italic;
+        }
+        
+        .reflection {
+            background: #f0f4ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        
+        .reflection h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+        
+        hr {
+            border: 0;
+            height: 1px;
+            background: #eee;
+            margin: 30px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="devotion-card">
+        <div class="day-number">Day 5</div>
+        
+        <h1>Healing from Hurt</h1>
+        
+        <div class="theme">Christ understands our pain</div>
+        
+        <div class="content">
+            <p>We all experience pain - whether from rejection, loss, betrayal, or disappointment. In these moments, we may feel alone in our suffering, but Scripture reminds us that Christ not only sees our pain but fully understands it.</p>
+            
+            <p>God's Word assures us in <span class="scripture-ref" data-verse="'He heals the brokenhearted and binds up their wounds.' (Psalm 147:3)">Psalm 147:3</span> and <span class="scripture-ref" data-verse="'Cast all your anxiety on him because he cares for you.' (1 Peter 5:7)">1 Peter 5:7</span> that our Heavenly Father is intimately concerned with our healing.</p>
+            
+            <p>Jesus experienced profound emotional pain during His earthly ministry. He was betrayed by a close friend (Judas), denied by another (Peter), misunderstood by His family, and rejected by those He came to save. The writer of Hebrews tells us He is a high priest who can "sympathize with our weaknesses" (Hebrews 4:15).</p>
+        </div>
+        
+        <div class="reflection">
+            <h3>Reflection Questions</h3>
+            <ol>
+                <li>What hurt are you carrying that you need to bring to Jesus?</li>
+                <li>How does knowing Christ understands your pain change how you approach Him?</li>
+                <li>What practical step can you take this week to release your hurt to God?</li>
+            </ol>
+        </div>
+        
+        <div class="prayer">
+            <p><strong>Prayer:</strong> Lord Jesus, thank You for understanding my pain. You're not a distant God but a Savior who has walked through suffering. Help me to bring my wounds to You with confidence that You care. Teach me to release my hurt into Your healing hands, trusting that You will bind up my brokenness in Your perfect timing. Amen.</p>
+        </div>
+        
+        <hr>
+        
+        <p><strong>Practice for Today:</strong> When painful memories surface today, pause and speak this truth: "Jesus understands this pain and is healing me."</p>
+    </div>
+
+    <script>
+        // Optional: Add smooth behavior for scripture popups
+        document.querySelectorAll('.scripture-ref').forEach(ref => {
+            ref.addEventListener('mouseenter', function() {
+                this.style.transition = 'all 0.2s ease';
+                this.style.color = '#4b0082';
+            });
+            ref.addEventListener('mouseleave', function() {
+                this.style.color = '';
+            });
+        });
+    </script>
+</body>
+</html>
