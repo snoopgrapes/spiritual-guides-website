@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pride Divides; Humility Heals</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f7;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        h1 {
+            text-align: center;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            border-left: 5px solid #e74c3c;
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+        .verse-ref {
+            color: #e74c3c;
+            cursor: pointer;
+            text-decoration: underline dotted;
+            font-weight: bold;
+        }
+        .verse-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            z-index: 100;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .close-btn {
+            float: right;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .quote {
+            font-style: italic;
+            color: #555;
+            border-left: 3px solid #3498db;
+            padding-left: 15px;
+            margin: 20px 0;
+        }
+        .highlight {
+            background-color: #fffacd;
+            padding: 2px 5px;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #f2f2f2;
+        }
+        .case-study {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 25px 0;
+        }
+        .practical-box {
+            background-color: #e8f4f8;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .gender-section {
+            display: flex;
+            gap: 20px;
+            margin: 25px 0;
+        }
+        .gender-card {
+            flex: 1;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .masculine {
+            background-color: #e8f4fc;
+            border-left: 5px solid #2980b9;
+        }
+        .feminine {
+            background-color: #fce8f4;
+            border-left: 5px solid #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <h1>"Pride Divides; Humility Heals": An In-Depth Study</h1>
+    
+    <p>This study explores the profound dichotomy between pride and humility, drawing from secular research, psychology, theology, and biblical teachings to demonstrate how pride fractures relationships and societies while humility fosters healing and unity.</p>
+    
+    <h2>I. Defining Pride and Humility</h2>
+    
+    <h3>A. Pride: The Root of Division</h3>
+    <p>Pride is universally recognized as a destructive force—both in psychological studies and theological teachings.</p>
+    
+    <div class="quote">
+        "Pride is the complete anti-God state of mind." — C.S. Lewis
+    </div>
+    
+    <p><strong>Secular Perspective:</strong></p>
+    <ul>
+        <li>Modern psychology identifies pride as narcissism, arrogance, and self-idolatry, leading to social discord and relational breakdowns</li>
+        <li>Research shows that pride correlates with defensiveness, resistance to feedback, and interpersonal hostility</li>
+    </ul>
+    
+    <p><strong>Biblical Perspective:</strong></p>
+    <ul>
+        <li><span class="verse-ref" onclick="showVerse('Proverbs 16:18', 'Pride goes before destruction, a haughty spirit before a fall.')">Proverbs 16:18</span> warns about the dangers of pride</li>
+        <li>Augustine described pride as the original sin, leading to alienation from God and others</li>
+    </ul>
+    
+    <h3>B. Humility: The Path to Healing</h3>
+    <p>Humility, by contrast, is a virtue that fosters connection, growth, and reconciliation.</p>
+    
+    <p><strong>Secular Perspective:</strong></p>
+    <ul>
+        <li>Psychologists define humility as accurate self-awareness, openness to feedback, and other-centeredness</li>
+        <li>Studies link humility to better mental health, stronger relationships, and effective leadership</li>
+    </ul>
+    
+    <p><strong>Biblical Perspective:</strong></p>
+    <ul>
+        <li><span class="verse-ref" onclick="showVerse('Philippians 2:3-5', 'Do nothing out of selfish ambition or vain conceit. Rather, in humility value others above yourselves, not looking to your own interests but each of you to the interests of the others. In your relationships with one another, have the same mindset as Christ Jesus.')">Philippians 2:3-5</span> calls believers to Christ's humility</li>
+        <li>Jesus exemplified humility through servanthood (<span class="verse-ref" onclick="showVerse('John 13:1-17', 'Now before the Feast of the Passover, when Jesus knew that his hour had come to depart out of this world to the Father, having loved his own who were in the world, he loved them to the end...')">John 13:1-17</span>) and sacrificial love (<span class="verse-ref" onclick="showVerse('Philippians 2:5-8', 'Have this mind among yourselves, which is yours in Christ Jesus, who, though he was in the form of God, did not count equality with God a thing to be grasped, but emptied himself, by taking the form of a servant...')">Philippians 2:5-8</span>)</li>
+    </ul>
+    
+    <h2>II. How Pride Divides</h2>
+    
+    <h3>A. In Personal Relationships</h3>
+    <p>Pride fosters resentment, competition, and broken trust. Research shows that prideful individuals struggle with forgiveness and escalate conflicts.</p>
+    
+    <h3>B. In Society and Culture</h3>
+    <p>Social media amplifies pride through self-promotion, tribalism, and polarization. Political and ideological arrogance deepens societal divisions.</p>
+    
+    <h3>C. In Spiritual Life</h3>
+    <p>Pride leads to self-righteousness (<span class="verse-ref" onclick="showVerse('Luke 18:9-14', 'He also told this parable to some who trusted in themselves that they were righteous, and treated others with contempt...')">Luke 18:9-14</span>) and religious hypocrisy. Augustine argued that pride distorts our relationship with God.</p>
+    
+    <h2>III. How Humility Heals</h2>
+    
+    <h3>A. In Personal Growth</h3>
+    <p>Humility allows self-correction and learning from mistakes. Studies show humble people experience less stress and higher resilience.</p>
+    
+    <h3>B. In Relationships</h3>
+    <p>Humility fosters empathy, reconciliation, and deeper connections. Married couples with humility report lower conflict and greater satisfaction.</p>
+    
+    <h3>C. In Leadership and Society</h3>
+    <p>Humble leaders inspire trust and ethical decision-making. Historical figures like Gandhi and Mandela demonstrated how humility unites.</p>
+    
+    <h3>D. In Spiritual Restoration</h3>
+    <p>Humility opens the door to repentance and divine grace (<span class="verse-ref" onclick="showVerse('James 4:6', 'But he gives more grace. Therefore it says, "God opposes the proud but gives grace to the humble."')">James 4:6</span>).</p>
+    
+    <h2>IV. Gender Dynamics in Pride and Humility</h2>
+    
+    <div class="gender-section">
+        <div class="gender-card masculine">
+            <h3>Masculine Pride</h3>
+            <ul>
+                <li>Often linked to dominance and reluctance to admit weakness</li>
+                <li>Men are less likely to seek help in marriage</li>
+                <li>Biblical example: <span class="verse-ref" onclick="showVerse('1 Samuel 15', 'Saul\'s pride led to jealousy, control, and downfall')">King Saul's pride</span></li>
+            </ul>
+            
+            <h3>Humble Masculinity</h3>
+            <p>Means leading through service (<span class="verse-ref" onclick="showVerse('Mark 10:42-45', 'And Jesus called them to him and said to them, "You know that those who are considered rulers of the Gentiles lord it over them, and their great ones exercise authority over them. But it shall not be so among you...')">Mark 10:42-45</span>)</p>
+        </div>
+        
+        <div class="gender-card feminine">
+            <h3>Feminine Pride</h3>
+            <ul>
+                <li>Often tied to comparison and relational control</li>
+                <li>May use indirect conflict styles when wounded</li>
+                <li>Biblical example: <span class="verse-ref" onclick="showVerse('Genesis 16', 'Sarah\'s impatience led to conflict with Hagar')">Sarah's impatience</span></li>
+            </ul>
+            
+            <h3>Humble Femininity</h3>
+            <p>Means releasing control (<span class="verse-ref" onclick="showVerse('1 Peter 3:1-7', 'Likewise, wives, be subject to your own husbands, so that even if some do not obey the word, they may be won without a word by the conduct of their wives...')">1 Peter 3:1-7</span>)</p>
+        </div>
+    </div>
+    
+    <h2>V. Covenant vs. Contract Marriage</h2>
+    
+    <table class="comparison-table">
+        <tr>
+            <th>Covenant Marriage</th>
+            <th>Contractual Marriage</th>
+        </tr>
+        <tr>
+            <td>Based on <span class="verse-ref" onclick="showVerse('Ephesians 5:25', 'Husbands, love your wives, as Christ loved the church and gave himself up for her')">sacrificial love</span></td>
+            <td>Based on mutual benefit</td>
+        </tr>
+        <tr>
+            <td><span class="verse-ref" onclick="showVerse('Malachi 2:14-16', '...the LORD was witness between you and the wife of your youth...')">Lifelong commitment</span></td>
+            <td>Conditional on satisfaction</td>
+        </tr>
+        <tr>
+            <td><span class="verse-ref" onclick="showVerse('Colossians 3:13', 'Bear with each other and forgive one another if any of you has a grievance against someone. Forgive as the Lord forgave you.')">Forgiveness as obligation</span></td>
+            <td>Forgiveness as optional</td>
+        </tr>
+    </table>
+    
+    <div class="case-study">
+        <h3>Case Study: Recovering from Pride in Marriage</h3>
+        <p><strong>Scenario:</strong> A husband (prideful independence) and wife (prideful resentment) verge on divorce.</p>
+        
+        <p><strong>Steps to Restoration:</strong></p>
+        <ol>
+            <li><span class="verse-ref" onclick="showVerse('Galatians 6:1', 'Brothers, if anyone is caught in any transgression, you who are spiritual should restore him in a spirit of gentleness. Keep watch on yourself, lest you too be tempted.')">Confrontation in truth</span> by a mentor</li>
+            <li><span class="verse-ref" onclick="showVerse('James 4:6-10', 'Humble yourselves before the Lord, and he will exalt you.')">Repentance</span> and seeking forgiveness</li>
+            <li>Implementing "soft startups" and shared prayer</li>
+            <li>Joining a small group for accountability</li>
+        </ol>
+        
+        <p><strong>Outcome:</strong> Over 12 months, humility rebuilds trust.</p>
+    </div>
+    
+    <h2>VI. Practical Steps to Cultivate Humility</h2>
+    
+    <div class="practical-box">
+        <h3>1. Daily Examination</h3>
+        <p>Reflect: "How did my pride harm our connection today?"</p>
+    </div>
+    
+    <div class="practical-box">
+        <h3>2. Structured Conflict Resolution</h3>
+        <p>Use "soft start-ups" and active listening techniques</p>
+    </div>
+    
+    <div class="practical-box">
+        <h3>3. Sacrificial Acts of Service</h3>
+        <p>Follow Christ's example of <span class="verse-ref" onclick="showVerse('John 13:14-15', 'If I then, your Lord and Teacher, have washed your feet, you also ought to wash one another\'s feet. For I have given you an example, that you also should do just as I have done to you.')">foot-washing humility</span></p>
+    </div>
+    
+    <h2>Conclusion</h2>
+    <p>Pride divides marriages by elevating "I" over "us"; humility heals by restoring the covenantal "we." As <span class="verse-ref" onclick="showVerse('James 4:6', 'God opposes the proud but gives grace to the humble.')">James 4:6</span> reminds us, humility is the path to God's grace and marital restoration.</p>
+    
+    <div class="quote">
+        "Humility is not thinking less of yourself, but thinking of yourself less." — C.S. Lewis
+    </div>
+    
+    <div id="verse-popup" class="verse-popup">
+        <span class="close-btn" onclick="closeVerse()">×</span>
+        <h3 id="verse-title"></h3>
+        <p id="verse-text"></p>
+    </div>
+    
+    <script>
+        function showVerse(title, text) {
+            document.getElementById('verse-title').innerText = title;
+            document.getElementById('verse-text').innerText = text;
+            document.getElementById('verse-popup').style.display = 'block';
+        }
+        
+        function closeVerse() {
+            document.getElementById('verse-popup').style.display = 'none';
+        }
+        
+        // Close popup if clicked outside
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('verse-popup')) {
+                closeVerse();
+            }
+        }
+    </script>
+</body>
+</html>

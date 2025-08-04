@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unforgiveness: The Poison in Marriage</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f5f0;
+        }
+        h1 {
+            color: #8b0000;
+            text-align: center;
+            border-bottom: 2px solid #d4a76a;
+            padding-bottom: 15px;
+        }
+        h2 {
+            color: #5f4b32;
+            margin-top: 30px;
+            border-left: 4px solid #d4a76a;
+            padding-left: 10px;
+        }
+        .quote {
+            font-style: italic;
+            background-color: #f0e6d2;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .bible-ref {
+            color: #8b0000;
+            text-decoration: underline;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .verse-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 2px solid #d4a76a;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            z-index: 100;
+            width: 80%;
+            max-width: 500px;
+        }
+        .close-btn {
+            float: right;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .highlight {
+            background-color: #fffacd;
+            padding: 2px 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Unforgiveness: The Poison in Marriage</h1>
+    
+    <div class="quote">
+        "Resentment is like drinking poison and waiting for the other person to die." — St. Augustine
+    </div>
+    
+    <h2>I. The Toxic Nature of Unforgiveness</h2>
+    <p>Unforgiveness in marriage acts as a slow-acting poison that gradually erodes the foundation of trust and intimacy. Psychological studies reveal that harboring resentment triggers the same stress responses as physical threats, flooding the body with cortisol and adrenaline. This creates a <span class="highlight">vicious cycle of emotional withdrawal</span> and conflict escalation.</p>
+    
+    <p>Jesus warned about this spiritual poison in <span class="bible-ref" onclick="showVerse('Matthew 6:14-15', 'For if you forgive other people when they sin against you, your heavenly Father will also forgive you. But if you do not forgive others their sins, your Father will not forgive your sins.')">Matthew 6:14-15</span>, linking our forgiveness of others to God's forgiveness of us.</p>
+    
+    <h2>II. Scientific Evidence of the Damage</h2>
+    <p>Research from Johns Hopkins University shows that unforgiveness:</p>
+    <ul>
+        <li>Increases risk of heart disease by 23%</li>
+        <li>Elevates blood pressure to dangerous levels</li>
+        <li>Weakens immune system function</li>
+    </ul>
+    
+    <p>This aligns with biblical wisdom in <span class="bible-ref" onclick="showVerse('Hebrews 12:15', 'See to it that no one falls short of the grace of God and that no bitter root grows up to cause trouble and defile many.')">Hebrews 12:15</span> about the "bitter root" that defiles.</p>
+    
+    <h2>III. The Path to Healing</h2>
+    <p>Breaking free from unforgiveness requires:</p>
+    <ol>
+        <li><strong>Acknowledgment</strong> - Name the hurt specifically</li>
+        <li><strong>Decision</strong> - Choose to forgive as an act of will</li>
+        <li><strong>Action</strong> - Demonstrate forgiveness through changed behavior</li>
+    </ol>
+    
+    <p>Paul instructs in <span class="bible-ref" onclick="showVerse('Ephesians 4:31-32', 'Get rid of all bitterness, rage and anger, brawling and slander, along with every form of malice. Be kind and compassionate to one another, forgiving each other, just as in Christ God forgave you.')">Ephesians 4:31-32</span> to "get rid of all bitterness" and forgive as Christ forgave us.</p>
+    
+    <div class="verse-popup" id="versePopup">
+        <span class="close-btn" onclick="hideVerse()">×</span>
+        <h3 id="verseRef"></h3>
+        <p id="verseText"></p>
+    </div>
+    
+    <script>
+        function showVerse(reference, text) {
+            document.getElementById('verseRef').innerText = reference;
+            document.getElementById('verseText').innerText = text;
+            document.getElementById('versePopup').style.display = 'block';
+        }
+        
+        function hideVerse() {
+            document.getElementById('versePopup').style.display = 'none';
+        }
+        
+        // Close popup if clicked outside
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('versePopup')) {
+                hideVerse();
+            }
+        }
+    </script>
+</body>
+</html>
